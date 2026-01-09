@@ -4,11 +4,13 @@ class PointerEventScrollbarHandler extends PointerEventHandler{
     scrollTop0 = 0;
     scrollLeft0 = 0;
     scrollbar = null
+    multiplier = 1;
     constructor(target,options={}){
         super(target)
         this.axis = options.axis??'both';
         this.invert = options.invert??'both';
         this.scrollbar = options.scrollbar??target;
+        this.multiplier = options.multiplier??1;
     }
 
     on(){
@@ -29,21 +31,18 @@ class PointerEventScrollbarHandler extends PointerEventHandler{
     scrollPointerdown = (event)=>{
         this.scrollLeft0 = this.scrollbar.scrollLeft;
         this.scrollTop0 = this.scrollbar.scrollTop;
-        this.target.classList.add('scrolling');
+        this.target.classList.add('dragging');
         this.scrollbar.classList.add('scrolling');
     }
     scrollPointermove = (event)=>{
         
         const detail = event.detail;
-        if(this.axis=='x' || this.axis=='both'){
-           this.scrollbar.scrollLeft =  this.scrollLeft0 + detail.totalMetrics.distanceX*(this.invert?-1:1);
-        }
-        if(this.axis=='y' || this.axis=='both'){
-           this.scrollbar.scrollTop =  this.scrollTop0 + detail.totalMetrics.distanceY*(this.invert?-1:1);
-        }
+        const scrollLeft =  (this.axis=='x' || this.axis=='both')?(this.scrollLeft0 + detail.totalMetrics.distanceX*(this.invert?-1:1)*this.multiplier):this.scrollbar.scrollLeft0 ;
+        const scrollTop =  (this.axis=='y' || this.axis=='both')?(this.scrollTop0 + detail.totalMetrics.distanceY*(this.invert?-1:1)*this.multiplier):this.scrollbar.scrollTop0 ;
+        this.scrollbar.scrollTo(scrollLeft,scrollTop);
     }
     scrollPointerup = (event)=>{
-        this.target.classList.remove('scrolling');
+        this.target.classList.remove('dragging');
         this.scrollbar.classList.remove('scrolling');
     }
 }
