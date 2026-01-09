@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko" >
 <head>
-    <title>ui-scrollbar-handler</title>
+    <title>ui-pointer-event-scrollbar-handler</title>
     <meta charset="utf-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta http-equiv="Content-Style-Type" content="text/css">
@@ -27,36 +27,35 @@
     
     <!-- meta og -->
     
-    <meta property="og:title" content="ui-scrollbar-handler">
-    <meta property="og:description" content="ui-scrollbar-handler">
+    <meta property="og:title" content="ui-pointer-event-scrollbar-handler">
+    <meta property="og:description" content="ui-pointer-event-scrollbar-handler">
     <meta name="og:image" content="http://www.mins01.com/img/logo.gif">
     <meta property="og:image:width" content="190">
     <meta property="og:image:height" content="70" />
-    <meta property="og:site_name" content="ui-scrollbar-handler" />
+    <meta property="og:site_name" content="ui-pointer-event-scrollbar-handler" />
     <meta property="og:type" content="website">
     
     <!-- //meta og -->
      <script src="libs/js-pointer-event-handler/PointerEventHandler.js"></script>
-     <script src="ScrollbarHandler.js"></script>
+     <script src="PointerEventScrollbarHandler.js"></script>
      <script>
         window.addEventListener('load',()=>{
-            const sh01 = new ScrollbarHandler(document.querySelector('#target-scrollbar-01'));
-            sh01.on();
-
-            const sh02 = new ScrollbarHandler(document.querySelector('#target-scrollbar-02'),{axis:'x'});
-            sh02.on();
-            const sh03 = new ScrollbarHandler(document.querySelector('#target-scrollbar-03'),{axis:'y'});
-            sh03.on();
-            const sh04 = new ScrollbarHandler(document.querySelector('#target-scrollbar-04'),{invert:false});
-            sh04.on();
-
-            const sh05 = new ScrollbarHandler(document.querySelector('#target-scrollbar-05'),{scrollbar:document.querySelector('#target-scrollbar-05-scrollbar')});
-            sh05.on();
+            const pesh1 = new PointerEventScrollbarHandler(document.querySelector('#target-scrollbar-01'));
+            pesh1.on();
+            const pesh2 = new PointerEventScrollbarHandler(document.querySelector('#target-scrollbar-02'),{axis:'x'});
+            pesh2.on();
+            const pesh3 = new PointerEventScrollbarHandler(document.querySelector('#target-scrollbar-03'),{axis:'y'});
+            pesh3.on();
+            const pesh4 = new PointerEventScrollbarHandler(document.querySelector('#target-scrollbar-04'),{invert:false});
+            pesh4.on();
+            const pesh5 = new PointerEventScrollbarHandler(document.querySelector('#target-scrollbar-05'),{scrollbar:document.querySelector('#target-scrollbar-05-scrollbar')});
+            pesh5.on();
         })
      </script>
      <style>
         .scrolling{
             outline: 3px dashed #933;
+            cursor: grabbing;
         }
      </style>
     
@@ -64,7 +63,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>ui-scrollbar-handler</h1>
+        <h1>ui-pointer-event-scrollbar-handler</h1>
         <hr>
         <ul class="list-group">
             <li class="list-group-item"><a href="https://github.com/mins01/ui-pointer-event-scrollbar-handler">https://github.com/mins01/ui-pointer-event-scrollbar-handler</a></li>

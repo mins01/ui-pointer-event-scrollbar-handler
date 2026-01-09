@@ -1,4 +1,4 @@
-class ScrollbarHandler extends PointerEventHandler{
+class PointerEventScrollbarHandler extends PointerEventHandler{
     axis="both";
     invert=true;
     scrollTop0 = 0;
@@ -29,6 +29,7 @@ class ScrollbarHandler extends PointerEventHandler{
     scrollPointerdown = (event)=>{
         this.scrollLeft0 = this.scrollbar.scrollLeft;
         this.scrollTop0 = this.scrollbar.scrollTop;
+        this.target.classList.add('scrolling');
         this.scrollbar.classList.add('scrolling');
     }
     scrollPointermove = (event)=>{
@@ -42,6 +43,7 @@ class ScrollbarHandler extends PointerEventHandler{
         }
     }
     scrollPointerup = (event)=>{
+        this.target.classList.remove('scrolling');
         this.scrollbar.classList.remove('scrolling');
     }
 }
