@@ -15,15 +15,21 @@ class ScrollbarHandler extends PointerEventHandler{
         this.target.addEventListener('pointerdown.peh',this.scrollPointerdown)
         this.target.addEventListener('pointermove.peh',this.scrollPointermove)
         this.target.addEventListener('pointerup.peh',this.scrollPointerup)
+        this.target.addEventListener('pointerup.peh',this.scrollPointerup)
+        this.target.addEventListener('pointercancel.peh',this.scrollPointerup)
+        this.target.addEventListener('pointerleave.peh',this.scrollPointerup)
     }
     off(){
         this.target.removeEventListener('pointerdown.peh',this.scrollPointerdown)
         this.target.removeEventListener('pointermove.peh',this.scrollPointermove)
         this.target.removeEventListener('pointerup.peh',this.scrollPointerup)
+        this.target.removeEventListener('pointercancel.peh',this.scrollPointerup)
+        this.target.removeEventListener('pointerleave.peh',this.scrollPointerup)
     }
     scrollPointerdown = (event)=>{
         this.scrollLeft0 = this.scrollbar.scrollLeft;
         this.scrollTop0 = this.scrollbar.scrollTop;
+        this.scrollbar.classList.add('scrolling');
     }
     scrollPointermove = (event)=>{
         
@@ -36,5 +42,6 @@ class ScrollbarHandler extends PointerEventHandler{
         }
     }
     scrollPointerup = (event)=>{
+        this.scrollbar.classList.remove('scrolling');
     }
 }
