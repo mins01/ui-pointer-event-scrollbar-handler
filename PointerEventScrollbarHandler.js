@@ -17,7 +17,6 @@ class PointerEventScrollbarHandler extends PointerEventHandler{
         this.target.addEventListener('pointerdown.peh',this.scrollPointerdown)
         this.target.addEventListener('pointermove.peh',this.scrollPointermove)
         this.target.addEventListener('pointerup.peh',this.scrollPointerup)
-        this.target.addEventListener('pointerup.peh',this.scrollPointerup)
         this.target.addEventListener('pointercancel.peh',this.scrollPointerup)
         this.target.addEventListener('pointerleave.peh',this.scrollPointerup)
     }
